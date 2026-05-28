@@ -1,13 +1,67 @@
-import { Header } from '@/components/Header';
+'use client';
+
+import { useState } from 'react';
 import { Hero } from '@/components/Hero';
+import { StorefrontGrid } from '@/components/StorefrontGrid';
+import { LogoCloud } from '@/components/ui/logo-cloud-2';
+import { FeatureScroll } from '@/components/FeatureScroll';
+import IntegrationHero from '@/components/ui/integration-hero';
+import { FAQ } from '@/components/FAQ';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-black overflow-x-hidden pt-20 md:pt-24">
+    <main className="min-h-screen relative">
+
+      {/* Dynamic background — only active over the storefront grid area */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <AnimatePresence>
+          {hoveredImage && (
+            <motion.div
+              key={hoveredImage}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.12 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${hoveredImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+          )}
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
+      </div>
+
+      <div className="relative z-10">
         <Hero />
-      </main>
-    </>
+
+        <StorefrontGrid onHover={setHoveredImage} />
+
+        {/* Logo Cloud Section */}
+        <section id="clients" className="py-24 px-6 border-b border-zinc-900 overflow-hidden">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="mb-12 text-center font-medium text-xl text-zinc-400 tracking-tight md:text-3xl font-hanken">
+              Companies we{' '}
+              <span className="font-semibold text-white">collaborate</span> with.
+            </h2>
+            <LogoCloud />
+          </div>
+        </section>
+
+        {/* Features Scroll Section */}
+        <FeatureScroll />
+
+        {/* Integration Hero Section */}
+        <IntegrationHero />
+
+        {/* FAQ Section */}
+        <FAQ />
+      </div>
+    </main>
   );
 }

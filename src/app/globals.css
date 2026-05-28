@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-hanken: var(--font-hanken);
+  --font-roboto: var(--font-roboto);
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Scroll carousel animations */
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  --animate-scroll-left: scroll-left 30s linear infinite;
+  --animate-scroll-right: scroll-right 30s linear infinite;
+}
+
+/* shadcn/ui design tokens + project theme — used by Button and other shadcn components */
+:root {
+  /* Project theme: black background */
+  --background: #000000;
+  --foreground: #ffffff;
+  /* shadcn tokens */
+  --primary: #ffffff;
+  --primary-foreground: #0a0a0a;
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --accent: #27272a;
+  --accent-foreground: #fafafa;
+  --input: #27272a;
+  --ring: #d4d4d8;
+  --ring-offset-background: #000000;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --primary: #fafafa;
+  --primary-foreground: #0a0a0a;
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #fafafa;
+  --accent: #27272a;
+  --accent-foreground: #fafafa;
+  --input: #27272a;
+  --ring: #d4d4d8;
+  --ring-offset-background: #0a0a0a;
+}
+
+/* Tailwind 4 class-based dark mode */
+@variant dark (&:where(.dark, .dark *));
+
+* {
+  @apply transition-colors duration-300;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-hanken), var(--font-roboto), ui-sans-serif, system-ui;
+  min-height: 100vh;
+}
+
+html {
+  scroll-padding-top: 90px;
+}

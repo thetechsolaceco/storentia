@@ -1,16 +1,22 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { Hero } from './Hero';
+
+// Mock AnoAI to avoid WebGL context issues in test environment
+vi.mock('./ui/animated-shader-background', () => ({
+  default: () => <div data-testid="ano-ai-mock" />
+}));
 
 describe('Hero', () => {
   it('renders hero content', () => {
     render(<Hero />);
     
-    expect(screen.getByText(/Introducing the F1 Keyboard/i)).toBeDefined();
+    expect(screen.getByText(/a product by/i)).toBeDefined();
+    expect(screen.getByAltText(/techsolace/i)).toBeDefined();
     expect(screen.getByText(/Build better/i)).toBeDefined();
-    expect(screen.getByText(/sites, faster/i)).toBeDefined();
-    expect(screen.getByText(/Framer is the site builder/i)).toBeDefined();
-    expect(screen.getByText('Start for free')).toBeDefined();
-    expect(screen.getByText('Start with AI')).toBeDefined();
+    expect(screen.getByText(/stores, faster/i)).toBeDefined();
+    expect(screen.getByText(/Experience the future/i)).toBeDefined();
+    expect(screen.getByText('Get Started')).toBeDefined();
+    expect(screen.getByText('View Showcase')).toBeDefined();
   });
 });
