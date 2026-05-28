@@ -3,9 +3,11 @@ import { Hero } from '@/components/Hero';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black overflow-x-hidden">
+    <>
       <Header />
-      <Hero />
-    </main>
+      <main className="min-h-screen bg-black overflow-x-hidden pt-20 md:pt-24">
+        <Hero />
+      </main>
+    </>
   );
 }
