@@ -123,10 +123,10 @@ export function Header() {
         {/* Actions - Right */}
         <div className="w-1/4 flex items-center justify-end gap-4 lg:gap-6 text-sm">
           <Link
-            href="https://app.storentia.com"
+            href="/contact"
             className="text-white px-5 py-2 rounded-full font-medium border border-zinc-800 hover:bg-zinc-900 transition-all whitespace-nowrap"
           >
-            Get Started
+            Contact Us
           </Link>
         </div>
       </div>
