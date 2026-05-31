@@ -43,6 +43,7 @@ const NAV = [
       { label: 'Documentation', href: '/docs' },
       { label: 'API Reference', href: '/api' },
       { label: 'Community', href: '/community' },
+      { label: 'Status', href: 'https://status.storentia.com', external: true },
     ],
   },
   {
@@ -128,10 +129,11 @@ export function Footer() {
                   {heading}
                 </p>
                 <ul className="space-y-3">
-                  {links.map(({ label, href }) => (
+                  {links.map(({ label, href, external }) => (
                     <li key={label}>
                       <Link
                         href={href}
+                        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                         className="text-zinc-500 text-sm font-roboto hover:text-white transition-colors duration-200"
                       >
                         {label}
