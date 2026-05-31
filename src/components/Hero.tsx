@@ -80,13 +80,13 @@ export function Hero() {
 
         {/* CTAs */}
         <motion.div variants={item} className="mt-10 flex flex-col sm:flex-row items-center gap-4">
-          <button className="group inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold font-roboto text-sm hover:bg-zinc-100 transition-all duration-200">
-            Get started free
+          <a href="https://app.storentia.com" className="group inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold font-roboto text-sm hover:bg-zinc-100 transition-all duration-200">
+            Get Started
             <ArrowRight
               size={15}
               className="transition-transform duration-200 group-hover:translate-x-0.5"
             />
-          </button>
+          </a>
           <button className="inline-flex items-center gap-2 bg-transparent text-white border border-zinc-800 px-8 py-4 rounded-full font-semibold font-roboto text-sm hover:bg-zinc-900 hover:border-zinc-700 transition-all duration-200">
             View showcase
           </button>
