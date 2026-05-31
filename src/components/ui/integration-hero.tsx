@@ -29,7 +29,7 @@ const repeatedIcons = (icons: string[], repeat = 4) =>
 
 export default function IntegrationHero() {
   return (
-    <section id="pricing" className="relative py-32 overflow-hidden bg-white dark:bg-black">
+    <section className="relative py-32 overflow-hidden bg-white dark:bg-black">
       {/* Light grid background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.04)_1px,transparent_1px)] [background-size:24px_24px]" />
 

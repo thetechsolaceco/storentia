@@ -7,6 +7,7 @@ import { LogoCloud } from '@/components/ui/logo-cloud-2';
 import { FeatureScroll } from '@/components/FeatureScroll';
 import IntegrationHero from '@/components/ui/integration-hero';
 import { FAQ } from '@/components/FAQ';
+import { Pricing } from '@/components/Pricing';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
@@ -58,6 +59,9 @@ export default function Home() {
 
         {/* Integration Hero Section */}
         <IntegrationHero />
+
+        {/* Pricing Section */}
+        <Pricing />
 
         {/* FAQ Section */}
         <FAQ />
