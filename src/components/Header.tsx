@@ -4,11 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
   const navLinks = ['Pricing', 'Experience', 'Portfolio', 'Clients', 'FAQ'];
 
   // Prevent hydration mismatch
@@ -16,60 +18,59 @@ export function Header() {
     setMounted(true);
   }, []);
 
+  const scrollToId = (targetId: string) => {
+    const element = document.getElementById(targetId);
+    if (!element) return false;
+
+    const headerOffset = 90;
+    const offsetPosition = element.getBoundingClientRect().top + window.scrollY - headerOffset;
+    const startY = window.scrollY;
+    const difference = offsetPosition - startY;
+    const duration = 600;
+    const startTime = performance.now();
+
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const animateScroll = () => {
+      const elapsed = performance.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, startY + difference * easeInOutCubic(progress));
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      } else {
+        window.history.pushState(null, '', `#${targetId}`);
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
+    return true;
+  };
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    const element = document.getElementById(targetId);
-    if (element) {
-      const headerOffset = 90; // matches scroll-padding-top
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      const startY = window.scrollY;
-      const difference = offsetPosition - startY;
-      const duration = 600; // Constant 600ms scroll transition
-      const startTime = performance.now();
-
-      const easeInOutCubic = (t: number) => {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-      };
-
-      const animateScroll = () => {
-        const currentTime = performance.now();
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const ease = easeInOutCubic(progress);
-
-        window.scrollTo(0, startY + difference * ease);
-
-        if (progress < 1) {
-          requestAnimationFrame(animateScroll);
-        } else {
-          window.history.pushState(null, '', `#${targetId}`);
-        }
-      };
-
-      requestAnimationFrame(animateScroll);
+    if (!scrollToId(targetId)) {
+      router.push(`/#${targetId}`);
     }
   };
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
+    if (window.location.pathname !== '/') {
+      router.push('/');
+      return;
+    }
+
     const startY = window.scrollY;
     const duration = 600;
     const startTime = performance.now();
-
-    const easeInOutCubic = (t: number) => {
-      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    };
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
     const animateScroll = () => {
-      const currentTime = performance.now();
-      const elapsed = currentTime - startTime;
+      const elapsed = performance.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-
-      window.scrollTo(0, startY * (1 - ease));
-
+      window.scrollTo(0, startY * (1 - easeInOutCubic(progress)));
       if (progress < 1) {
         requestAnimationFrame(animateScroll);
       } else {
