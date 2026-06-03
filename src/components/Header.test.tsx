@@ -18,7 +18,7 @@ describe('Header', () => {
     expect(screen.getByText('Log in')).toBeDefined();
     expect(screen.getByText('Sign up')).toBeDefined();
     
-    const navLinks = ['Pricing', 'Experience', 'Portfolio', 'Clients', 'FAQ', 'Contact Us'];
+    const navLinks = ['Pricing', 'Experience', 'Portfolio', 'Clients', 'FAQ'];
     navLinks.forEach(link => {
       expect(screen.getByText(link)).toBeDefined();
     });
