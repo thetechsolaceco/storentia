@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Plus } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from "framer-motion";
+import { Plus } from "lucide-react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const faqs = [
   {
@@ -51,11 +51,11 @@ function FAQItem({ question, answer, isOpen, onClick, index }: FAQItemProps) {
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: index * 0.07, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={cn(
-        'border-b border-zinc-800 transition-colors duration-300',
-        isOpen ? 'border-zinc-700' : ''
+        "border-b border-zinc-800 transition-colors duration-300",
+        isOpen ? "border-zinc-700" : "",
       )}
     >
       <button
@@ -65,8 +65,8 @@ function FAQItem({ question, answer, isOpen, onClick, index }: FAQItemProps) {
       >
         <span
           className={cn(
-            'text-base md:text-lg font-medium font-hanken tracking-tight transition-colors duration-300',
-            isOpen ? 'text-white' : 'text-zinc-300 group-hover:text-white'
+            "text-base md:text-lg font-medium font-hanken tracking-tight transition-colors duration-300",
+            isOpen ? "text-white" : "text-zinc-300 group-hover:text-white",
           )}
         >
           {question}
@@ -74,10 +74,10 @@ function FAQItem({ question, answer, isOpen, onClick, index }: FAQItemProps) {
 
         <span
           className={cn(
-            'mt-0.5 flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full border transition-all duration-300',
+            "mt-0.5 flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full border transition-all duration-300",
             isOpen
-              ? 'border-white bg-white text-black rotate-45'
-              : 'border-zinc-700 bg-transparent text-zinc-500 group-hover:border-zinc-500 group-hover:text-zinc-300'
+              ? "border-white bg-white text-black rotate-45"
+              : "border-zinc-700 bg-transparent text-zinc-500 group-hover:border-zinc-500 group-hover:text-zinc-300",
           )}
         >
           <Plus size={14} strokeWidth={2} />
@@ -89,7 +89,7 @@ function FAQItem({ question, answer, isOpen, onClick, index }: FAQItemProps) {
           <motion.div
             key="answer"
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
+            animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="overflow-hidden"
@@ -110,7 +110,10 @@ export function FAQ() {
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section id="faq" className="relative bg-black py-28 px-6 border-t border-zinc-900 overflow-hidden">
+    <section
+      id="faq"
+      className="relative bg-black py-28 px-6 border-t border-zinc-900 overflow-hidden"
+    >
       {/* Subtle radial glow */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="w-[600px] h-[600px] rounded-full bg-white/[0.02] blur-3xl" />
@@ -129,10 +132,12 @@ export function FAQ() {
             FAQ
           </p>
           <h2 className="text-4xl md:text-6xl font-bold font-hanken tracking-tight text-white leading-[1.1]">
-            Everything you<br />need to know.
+            Everything you
+            <br />
+            need to know.
           </h2>
           <p className="mt-5 text-zinc-400 font-roboto text-lg leading-relaxed max-w-xl">
-            Can't find the answer you're looking for?{' '}
+            Can't find the answer you're looking for?{" "}
             <a
               href="mailto:contact@techsolace.in"
               className="text-white underline underline-offset-4 decoration-zinc-600 hover:decoration-white transition-all duration-200"
