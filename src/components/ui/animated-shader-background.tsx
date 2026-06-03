@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 const AnoAI = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,7 +19,7 @@ const AnoAI = () => {
     const material = new THREE.ShaderMaterial({
       uniforms: {
         iTime: { value: 0 },
-        iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
+        iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
       },
       vertexShader: `
         void main() {
@@ -85,7 +85,7 @@ const AnoAI = () => {
           o = tanh(pow(o / 100.0, vec4(1.6)));
           gl_FragColor = o * 1.5;
         }
-      `
+      `,
     });
 
     const geometry = new THREE.PlaneGeometry(2, 2);
@@ -104,11 +104,11 @@ const AnoAI = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
       material.uniforms.iResolution.value.set(window.innerWidth, window.innerHeight);
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       cancelAnimationFrame(frameId);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
@@ -118,9 +118,7 @@ const AnoAI = () => {
     };
   }, []);
 
-  return (
-    <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none opacity-40" />
-  );
+  return <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none opacity-40" />;
 };
 
 export default AnoAI;
