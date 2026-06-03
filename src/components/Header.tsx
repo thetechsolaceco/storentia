@@ -169,6 +169,15 @@ export function Header() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="fixed inset-0 z-[60] bg-zinc-950 flex flex-col items-center justify-center"
           >
+            {/* Explicit Close Button for Overlay */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-6 right-6 text-zinc-400 hover:text-white transition-colors focus:outline-none"
+              aria-label="Close menu"
+            >
+              <X size={32} />
+            </button>
+
             <nav className="flex flex-col items-center gap-8">
               <motion.div
                 initial="hidden"
