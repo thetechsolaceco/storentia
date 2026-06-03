@@ -22,7 +22,6 @@ const ICONS_ROW2 = [
   "https://cdn-icons-png.flaticon.com/512/888/888847.png",
 ];
 
-// Utility to repeat icons enough times for a seamless loop
 const repeatedIcons = (icons: string[], repeat = 4) =>
   Array.from({ length: repeat }).flatMap(() => icons);
 
@@ -34,20 +33,19 @@ export default function IntegrationHero() {
 
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-6 text-center">
-        <span className="inline-block px-3 py-1 mb-4 text-sm rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-black text-black dark:text-white">
+        <span className="inline-block px-3 py-1 mb-4 text-xs md:text-sm rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-black text-black dark:text-white">
           250+ Integrations
         </span>
-        <h1 className="text-4xl lg:text-6xl font-bold tracking-tight">
-          Your store, connected
-          <br className="hidden sm:block" /> to everything.
+        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight leading-[1.2]">
+          Your store, connected<br className="hidden sm:block" /> to everything.
         </h1>
-        <p className="mt-4 text-lg text-gray-500 dark:text-zinc-400 max-w-xl mx-auto">
-          Payments, shipping, marketing, analytics. Plug in the tools your
+        <p className="mt-4 text-base md:text-lg text-gray-500 dark:text-zinc-400 max-w-xl mx-auto">
+          Payments, shipping, marketing, analytics — plug in the tools your
           business already runs on. No custom code. No friction.
         </p>
         <Button
           variant="default"
-          className="mt-8 px-6 py-3 rounded-lg bg-black text-white font-medium hover:bg-gray-800 transition"
+          className="mt-8 px-5 py-2.5 md:px-6 md:py-3 rounded-lg bg-black dark:bg-white text-white dark:text-black font-medium hover:bg-gray-800 dark:hover:bg-gray-200 transition text-sm md:text-base"
         >
           Explore integrations
         </Button>

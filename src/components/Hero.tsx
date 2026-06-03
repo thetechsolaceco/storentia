@@ -36,7 +36,7 @@ export function Hero() {
 
       {/* Center glow */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div className="w-[700px] h-[500px] rounded-full bg-white/[0.04] blur-[120px]" />
+        <div className="w-full max-w-[700px] h-[300px] md:h-[500px] rounded-full bg-white/[0.04] blur-[80px] md:blur-[120px]" />
       </div>
 
       {/* Content */}
@@ -44,7 +44,7 @@ export function Hero() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto"
+        className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto w-full"
       >
         {/* Badge */}
         <motion.div variants={item}>
@@ -55,7 +55,7 @@ export function Hero() {
               alt="techsolace"
               width={120}
               height={22}
-              className="object-contain h-[40px]"
+              className="object-contain h-[32px] md:h-[40px]"
             />
           </span>
         </motion.div>
@@ -63,7 +63,7 @@ export function Hero() {
         {/* Headline */}
         <motion.h1
           variants={item}
-          className="text-6xl sm:text-7xl md:text-[96px] font-bold font-hanken tracking-tight leading-[0.95] text-white"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-[96px] font-bold font-hanken tracking-tight leading-[1.1] md:leading-[0.95] text-white"
         >
           Launch better
           <br />

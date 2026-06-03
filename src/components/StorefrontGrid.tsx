@@ -27,7 +27,7 @@ export function StorefrontGrid({ onHover }: StorefrontGridProps) {
           {row1Loop.map((src, i) => (
             <div
               key={`row1-${i}`}
-              className="relative h-64 w-[480px] bg-zinc-950 flex-shrink-0 shadow-2xl cursor-pointer pointer-events-auto"
+              className="relative h-48 md:h-64 w-[320px] md:w-[480px] bg-zinc-950 flex-shrink-0 shadow-2xl cursor-pointer pointer-events-auto"
               onMouseEnter={() => onHover(src)}
               onMouseLeave={() => onHover(null)}
             >
@@ -46,7 +46,7 @@ export function StorefrontGrid({ onHover }: StorefrontGridProps) {
           {row2Loop.map((src, i) => (
             <div
               key={`row2-${i}`}
-              className="relative h-64 w-[480px] bg-zinc-950 flex-shrink-0 shadow-2xl cursor-pointer pointer-events-auto"
+              className="relative h-48 md:h-64 w-[320px] md:w-[480px] bg-zinc-950 flex-shrink-0 shadow-2xl cursor-pointer pointer-events-auto"
               onMouseEnter={() => onHover(src)}
               onMouseLeave={() => onHover(null)}
             >

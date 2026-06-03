@@ -62,21 +62,21 @@ export function FeatureScroll() {
       ref={containerRef}
       className="relative h-[400vh] bg-black"
     >
-      <div className="sticky top-0 z-10 h-screen flex items-center overflow-hidden">
+      <div className="sticky top-0 z-0 h-screen flex items-center overflow-hidden">
         <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 items-center">
           {/* Left Side: Content */}
-          <div className="h-full flex flex-col justify-center px-6 lg:px-24 xl:px-32 order-2 lg:order-1">
+          <div className="h-full flex flex-col justify-center px-6 lg:px-24 xl:px-32 order-2 lg:order-1 py-10 lg:py-0">
             <div className="max-w-xl">
-              <div className="space-y-4 mb-12">
-                <h2 className="text-zinc-500 text-sm font-roboto uppercase tracking-widest font-medium">
+              <div className="space-y-4 mb-8 md:mb-12">
+                <h2 className="text-zinc-500 text-xs md:text-sm font-roboto uppercase tracking-widest font-medium">
                   Platform Features
                 </h2>
-                <h3 className="text-4xl md:text-6xl font-bold font-hanken text-white tracking-tight leading-[1.1]">
-                  Everything your store needs.
+                <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold font-hanken text-white tracking-tight leading-[1.1]">
+                  Designed for the <br className="hidden md:block" /> modern enterprise.
                 </h3>
               </div>
 
-              <div className="space-y-10 relative">
+              <div className="space-y-6 md:space-y-10 relative">
                 {/* Progress Line Background */}
                 <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-zinc-800" />
 
@@ -93,16 +93,16 @@ export function FeatureScroll() {
                   <div
                     key={i}
                     className={cn(
-                      "group relative pl-10 transition-all duration-700",
+                      "group relative pl-6 md:pl-10 transition-all duration-700",
                       activeIndex === i ? "opacity-100" : "opacity-20",
                     )}
                   >
                     <motion.h4
                       animate={{
-                        x: activeIndex === i ? 0 : -10,
+                        x: activeIndex === i ? 0 : -5,
                         color: activeIndex === i ? "#ffffff" : "#71717a",
                       }}
-                      className="text-2xl font-semibold mb-3 font-hanken tracking-tight"
+                      className="text-xl md:text-2xl font-semibold mb-2 md:mb-3 font-hanken tracking-tight"
                     >
                       {feature.title}
                     </motion.h4>
@@ -111,13 +111,10 @@ export function FeatureScroll() {
                       animate={{
                         height: activeIndex === i ? "auto" : 0,
                         opacity: activeIndex === i ? 1 : 0,
-                        y: activeIndex === i ? 0 : 10,
+                        y: activeIndex === i ? 0 : 5,
                       }}
-                      transition={{
-                        duration: 0.5,
-                        ease: [0.21, 0.47, 0.32, 0.98],
-                      }}
-                      className="text-zinc-400 font-roboto leading-relaxed overflow-hidden text-base md:text-lg"
+                      transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+                      className="text-zinc-400 font-roboto leading-relaxed overflow-hidden text-sm md:text-lg"
                     >
                       {feature.description}
                     </motion.p>
@@ -128,7 +125,7 @@ export function FeatureScroll() {
           </div>
 
           {/* Right Side: Mockup Images */}
-          <div className="relative h-[40vh] lg:h-full w-full order-1 lg:order-2 bg-zinc-950 border-l border-zinc-800 overflow-hidden">
+          <div className="relative h-[30vh] md:h-[40vh] lg:h-full w-full order-1 lg:order-2 bg-zinc-950 border-l border-zinc-800 overflow-hidden">
             <AnimatePresence mode="wait">
               {features.map(
                 (feature, i) =>
