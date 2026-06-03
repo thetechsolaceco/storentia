@@ -15,8 +15,8 @@ describe('Hero', () => {
     expect(screen.getByAltText(/techsolace/i)).toBeDefined();
     expect(screen.getByText(/Build better/i)).toBeDefined();
     expect(screen.getByText(/stores, faster/i)).toBeDefined();
-    expect(screen.getByText(/Experience the future/i)).toBeDefined();
-    expect(screen.getByText('Get Started')).toBeDefined();
-    expect(screen.getByText('View Showcase')).toBeDefined();
+    expect(screen.getByText(/Storentia gives merchants/i)).toBeDefined();
+    expect(screen.getByText(/Get started free/i)).toBeDefined();
+    expect(screen.getByText(/View showcase/i)).toBeDefined();
   });
 });
