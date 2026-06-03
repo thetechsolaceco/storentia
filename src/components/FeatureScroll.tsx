@@ -49,7 +49,7 @@ export function FeatureScroll() {
 
   return (
     <section id="experience" ref={containerRef} className="relative h-[400vh] bg-black">
-      <div className="sticky top-0 z-10 h-screen flex items-center overflow-hidden">
+      <div className="sticky top-0 z-0 h-screen flex items-center overflow-hidden">
         <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 items-center">
           
           {/* Left Side: Content */}
