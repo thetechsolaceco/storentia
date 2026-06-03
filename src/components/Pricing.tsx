@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface Perk {
   id: string;
@@ -24,7 +24,7 @@ export function Pricing() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/plans')
+    fetch("/api/plans")
       .then((r) => r.json())
       .then((json) => {
         if (json.success) setPlans(json.data);
@@ -35,7 +35,10 @@ export function Pricing() {
   const midIndex = Math.floor((plans.length - 1) / 2);
 
   return (
-    <section id="pricing" className="relative bg-black py-28 px-6 border-t border-zinc-900 overflow-hidden">
+    <section
+      id="pricing"
+      className="relative bg-black py-28 px-6 border-t border-zinc-900 overflow-hidden"
+    >
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="w-[700px] h-[700px] rounded-full bg-white/[0.02] blur-3xl" />
       </div>
@@ -52,10 +55,12 @@ export function Pricing() {
             Pricing
           </p>
           <h2 className="text-5xl md:text-7xl font-bold font-hanken tracking-tight text-white leading-[1.05]">
-            Simple, transparent<br />pricing.
+            Simple, transparent
+            <br />
+            pricing.
           </h2>
           <p className="mt-6 text-zinc-500 font-roboto text-lg leading-relaxed max-w-2xl">
-            No hidden fees. No surprises. Pay only for what you use.
+            No hidden fees. No surprises. Pay only for what you use.{" "}
           </p>
         </motion.div>
 
@@ -76,8 +81,12 @@ export function Pricing() {
                   key={plan.id}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.5, delay: i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{
+                    duration: 0.5,
+                    delay: i * 0.1,
+                    ease: [0.21, 0.47, 0.32, 0.98],
+                  }}
                   className="relative flex flex-col rounded-[2.5rem] p-8 pb-7 transition-all duration-500 border border-white/[0.06] bg-[#090909] w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] xl:w-[calc(25%-1.5rem)] max-w-[310px] min-h-[520px] hover:border-white/[0.12] hover:bg-[#0D0D0D] hover:shadow-[0_0_50px_-12px_rgba(59,130,246,0.12)] group/card"
                 >
                   {/* Top/Bottom Notches */}
@@ -104,18 +113,23 @@ export function Pricing() {
                     <span className="text-5xl font-bold font-hanken text-white tracking-tighter">
                       ${plan.price.toFixed(0)}
                     </span>
-                    <span className="text-zinc-600 font-roboto text-[13px] font-medium">per month</span>
+                    <span className="text-zinc-600 font-roboto text-[13px] font-medium">
+                      per month
+                    </span>
                   </div>
 
                   <ul className="flex flex-col gap-3.5 mb-10 flex-1">
-                    {plan.perks && plan.perks.slice(0, 6).map((perk) => (
-                      <li key={perk.id} className="flex items-start gap-3">
-                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-zinc-700 shrink-0 group-hover/card:bg-blue-500/40 transition-colors duration-500" />
-                        <span className={`font-roboto text-[13px] leading-tight ${perk.is_highlighted ? 'text-zinc-200 font-medium' : 'text-zinc-400'}`}>
-                          {perk.label}
-                        </span>
-                      </li>
-                    ))}
+                    {plan.perks &&
+                      plan.perks.slice(0, 6).map((perk) => (
+                        <li key={perk.id} className="flex items-start gap-3">
+                          <span className="mt-2 w-1.5 h-1.5 rounded-full bg-zinc-700 shrink-0 group-hover/card:bg-blue-500/40 transition-colors duration-500" />
+                          <span
+                            className={`font-roboto text-[13px] leading-tight ${perk.is_highlighted ? "text-zinc-200 font-medium" : "text-zinc-400"}`}
+                          >
+                            {perk.label}
+                          </span>
+                        </li>
+                      ))}
                   </ul>
 
                   <Link
@@ -125,7 +139,7 @@ export function Pricing() {
                     className="group/btn relative flex items-center justify-between mt-auto"
                   >
                     <span className="text-sm font-bold font-hanken tracking-tight text-zinc-300 group-hover/btn:text-white transition-colors duration-300">
-                      {plan.price === 0 ? 'Get Started' : 'Purchase'}
+                      {plan.price === 0 ? "Get Started" : "Purchase"}
                     </span>
                     <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white text-black transition-all duration-300 group-hover/btn:scale-110 group-hover/btn:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                       <svg

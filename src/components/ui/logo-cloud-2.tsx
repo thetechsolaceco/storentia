@@ -17,10 +17,7 @@ type LogoCloudProps = React.ComponentProps<"div">;
 export function LogoCloud({ className, ...props }: LogoCloudProps) {
   return (
     <div
-      className={cn(
-        "relative grid grid-cols-2 border-zinc-800 md:grid-cols-4",
-        className
-      )}
+      className={cn("relative grid grid-cols-2 border-zinc-800 md:grid-cols-4", className)}
       {...props}
     >
       <div className="-translate-x-1/2 -top-px pointer-events-none absolute left-1/2 w-screen border-t border-zinc-800" />
@@ -120,10 +117,7 @@ type LogoCardProps = React.ComponentProps<"div"> & {
 function LogoCard({ logo, className, children, ...props }: LogoCardProps) {
   return (
     <div
-      className={cn(
-        "flex items-center justify-center bg-transparent px-4 py-8 md:p-8",
-        className
-      )}
+      className={cn("flex items-center justify-center bg-transparent px-4 py-8 md:p-8", className)}
       {...props}
     >
       <img

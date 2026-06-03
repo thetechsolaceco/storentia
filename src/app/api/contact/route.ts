@@ -1,6 +1,6 @@
-import { type NextRequest, NextResponse } from 'next/server';
-import { getContactsCollection } from '@/lib/mongodb';
-import { checkRateLimit } from '@/lib/ratelimit';
+import { type NextRequest, NextResponse } from "next/server";
+import { getContactsCollection } from "@/lib/mongodb";
+import { checkRateLimit } from "@/lib/ratelimit";
 
 type ContactBody = {
   name: string;
@@ -11,9 +11,9 @@ type ContactBody = {
 
 function getIp(req: NextRequest): string {
   return (
-    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
-    req.headers.get('x-real-ip') ??
-    'unknown'
+    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown"
   );
 }
 
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
   if (!allowed) {
     return NextResponse.json(
       { error: `Too many requests. Try again in ${retryAfterSec}s.` },
-      { status: 429, headers: { 'Retry-After': String(retryAfterSec) } }
+      { status: 429, headers: { "Retry-After": String(retryAfterSec) } },
     );
   }
 
@@ -32,23 +32,27 @@ export async function POST(req: NextRequest) {
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: 'Invalid JSON.' }, { status: 400 });
+    return NextResponse.json({ error: "Invalid JSON." }, { status: 400 });
   }
 
   const { name, email, subject, message } = body;
 
   if (
-    typeof name !== 'string' || !name.trim() ||
-    typeof email !== 'string' || !email.trim() ||
-    typeof subject !== 'string' || !subject.trim() ||
-    typeof message !== 'string' || !message.trim()
+    typeof name !== "string" ||
+    !name.trim() ||
+    typeof email !== "string" ||
+    !email.trim() ||
+    typeof subject !== "string" ||
+    !subject.trim() ||
+    typeof message !== "string" ||
+    !message.trim()
   ) {
-    return NextResponse.json({ error: 'All fields are required.' }, { status: 400 });
+    return NextResponse.json({ error: "All fields are required." }, { status: 400 });
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email.trim())) {
-    return NextResponse.json({ error: 'Invalid email address.' }, { status: 400 });
+    return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
   }
 
   try {
@@ -64,6 +68,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch {
-    return NextResponse.json({ error: 'Server error. Please try again later.' }, { status: 500 });
+    return NextResponse.json({ error: "Server error. Please try again later." }, { status: 500 });
   }
 }

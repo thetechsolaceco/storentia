@@ -1,29 +1,27 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export function Header() {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const navLinks = ['Pricing', 'Experience', 'Portfolio', 'Clients', 'FAQ'];
+  const navLinks = ["Pricing", "Experience", "Portfolio", "Clients", "FAQ"];
 
-  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Handle body scroll lock
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
   }, [isOpen]);
 
@@ -32,14 +30,15 @@ export function Header() {
     if (!element) return false;
 
     const headerOffset = 90;
-    const offsetPosition = element.getBoundingClientRect().top + window.scrollY - headerOffset;
+    const offsetPosition =
+      element.getBoundingClientRect().top + window.scrollY - headerOffset;
     const startY = window.scrollY;
     const difference = offsetPosition - startY;
     const duration = 600;
     const startTime = performance.now();
 
     const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 
     const animateScroll = () => {
       const elapsed = performance.now() - startTime;
@@ -48,7 +47,7 @@ export function Header() {
       if (progress < 1) {
         requestAnimationFrame(animateScroll);
       } else {
-        window.history.pushState(null, '', `#${targetId}`);
+        window.history.pushState(null, "", `#${targetId}`);
       }
     };
 
@@ -56,7 +55,10 @@ export function Header() {
     return true;
   };
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string,
+  ) => {
     e.preventDefault();
     if (!scrollToId(targetId)) {
       router.push(`/#${targetId}`);
@@ -65,8 +67,8 @@ export function Header() {
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    if (window.location.pathname !== '/') {
-      router.push('/');
+    if (window.location.pathname !== "/") {
+      router.push("/");
       return;
     }
 
@@ -74,7 +76,7 @@ export function Header() {
     const duration = 600;
     const startTime = performance.now();
     const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 
     const animateScroll = () => {
       const elapsed = performance.now() - startTime;
@@ -83,7 +85,7 @@ export function Header() {
       if (progress < 1) {
         requestAnimationFrame(animateScroll);
       } else {
-        window.history.pushState(null, '', '/');
+        window.history.pushState(null, "", "/");
       }
     };
 
@@ -117,7 +119,7 @@ export function Header() {
           <nav className="flex-1 hidden md:flex justify-center overflow-hidden">
             <ul className="flex items-center gap-x-6 lg:gap-x-10 text-[13px] font-medium text-zinc-400">
               {navLinks.map((link) => {
-                const targetId = link.toLowerCase().replace(/\s+/g, '-');
+                const targetId = link.toLowerCase().replace(/\s+/g, "-");
                 return (
                   <li key={link}>
                     <Link
@@ -135,7 +137,10 @@ export function Header() {
 
           {/* Actions - Right */}
           <div className="md:w-1/4 w-auto flex items-center justify-end gap-4 lg:gap-6 text-sm">
-            <Link href="#" className="text-zinc-400 hover:text-white transition-colors hidden sm:block whitespace-nowrap">
+            <Link
+              href="#"
+              className="text-zinc-400 hover:text-white transition-colors hidden sm:block whitespace-nowrap"
+            >
               Log in
             </Link>
             <Link
@@ -183,20 +188,20 @@ export function Header() {
                 variants={{
                   visible: {
                     transition: {
-                      staggerChildren: 0.1
-                    }
-                  }
+                      staggerChildren: 0.1,
+                    },
+                  },
                 }}
                 className="flex flex-col items-center gap-8"
               >
                 {navLinks.map((link) => {
-                  const targetId = link.toLowerCase().replace(/\s+/g, '-');
+                  const targetId = link.toLowerCase().replace(/\s+/g, "-");
                   return (
                     <motion.div
                       key={link}
                       variants={{
                         hidden: { opacity: 0, y: 20 },
-                        visible: { opacity: 1, y: 0 }
+                        visible: { opacity: 1, y: 0 },
                       }}
                     >
                       <Link
@@ -215,7 +220,7 @@ export function Header() {
                 <motion.div
                   variants={{
                     hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0 }
+                    visible: { opacity: 1, y: 0 },
                   }}
                   className="flex flex-col items-center gap-6 mt-8"
                 >

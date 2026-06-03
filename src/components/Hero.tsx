@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import Image from 'next/image';
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const item = {
   hidden: { opacity: 0, y: 24 },
@@ -15,20 +15,22 @@ const item = {
 
 const container = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
 };
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black px-6 pt-24 pb-16">
-
       {/* Grid texture */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
-          backgroundSize: '64px 64px',
+            "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
         }}
       />
 
@@ -44,7 +46,6 @@ export function Hero() {
         animate="show"
         className="relative z-10 flex flex-col items-center text-center max-w-5xl mx-auto w-full"
       >
-
         {/* Badge */}
         <motion.div variants={item}>
           <span className="inline-flex items-center gap-1.5 text-zinc-400 text-xs font-medium font-roboto tracking-widest mb-8">
@@ -64,7 +65,8 @@ export function Hero() {
           variants={item}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-[96px] font-bold font-hanken tracking-tight leading-[1.1] md:leading-[0.95] text-white"
         >
-          Build better<br />
+          Launch better
+          <br />
           <span className="text-zinc-500">stores, faster.</span>
         </motion.h1>
 
@@ -73,14 +75,17 @@ export function Hero() {
           variants={item}
           className="mt-8 text-lg md:text-xl text-zinc-400 font-roboto leading-relaxed max-w-2xl"
         >
-          Storentia gives merchants and developers everything they need —
-          beautiful storefronts, unified commerce, and the integrations
-          your business already runs on.
+          Storentia gives merchants and developers everything they need to sell online. Beautiful
+          storefronts, unified commerce, and 250+ integrations with the tools your business already
+          runs on.
         </motion.p>
 
         {/* CTAs */}
         <motion.div variants={item} className="mt-10 flex flex-col sm:flex-row items-center gap-4">
-          <a href="https://app.storentia.com" className="group inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold font-roboto text-sm hover:bg-zinc-100 transition-all duration-200">
+          <a
+            href="https://app.storentia.com"
+            className="group inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold font-roboto text-sm hover:bg-zinc-100 transition-all duration-200"
+          >
             Get Started
             <ArrowRight
               size={15}
@@ -91,7 +96,6 @@ export function Hero() {
             View showcase
           </button>
         </motion.div>
-
       </motion.div>
     </section>
   );

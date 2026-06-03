@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import React from "react";
 
 const ICONS_ROW1 = [
   "https://cdn-icons-png.flaticon.com/512/5968/5968854.png",
@@ -23,7 +22,6 @@ const ICONS_ROW2 = [
   "https://cdn-icons-png.flaticon.com/512/888/888847.png",
 ];
 
-// Utility to repeat icons enough times for a seamless loop
 const repeatedIcons = (icons: string[], repeat = 4) =>
   Array.from({ length: repeat }).flatMap(() => icons);
 
@@ -61,7 +59,11 @@ export default function IntegrationHero() {
                 key={i}
                 className="h-16 w-16 flex-shrink-0 rounded-full bg-white dark:bg-gray-300 shadow-md flex items-center justify-center"
               >
-                <img src={src} alt="integration icon" className="h-10 w-10 object-contain" />
+                <img
+                  src={src}
+                  alt="integration icon"
+                  className="h-10 w-10 object-contain"
+                />
               </div>
             ))}
           </div>
@@ -73,7 +75,11 @@ export default function IntegrationHero() {
                 key={i}
                 className="h-16 w-16 flex-shrink-0 rounded-full bg-white dark:bg-gray-300 shadow-md flex items-center justify-center"
               >
-                <img src={src} alt="integration icon" className="h-10 w-10 object-contain" />
+                <img
+                  src={src}
+                  alt="integration icon"
+                  className="h-10 w-10 object-contain"
+                />
               </div>
             ))}
           </div>

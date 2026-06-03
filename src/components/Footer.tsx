@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 /* Inline SVG social icons — lucide-react doesn't include brand icons */
 const TwitterX = () => (
@@ -31,36 +31,36 @@ const YouTubeIcon = () => (
 
 const NAV = [
   {
-    heading: 'Product',
+    heading: "Product",
     links: [
-      { label: 'Features', href: '/features' },
-      { label: 'Integrations', href: '/integrations' },
+      { label: "Features", href: "/features" },
+      { label: "Integrations", href: "/integrations" },
     ],
   },
   {
-    heading: 'Resources',
+    heading: "Resources",
     links: [
-      { label: 'Documentation', href: '/docs' },
-      { label: 'API Reference', href: '/api' },
-      { label: 'Community', href: '/community' },
-      { label: 'Status', href: 'https://status.storentia.com', external: true },
+      { label: "Documentation", href: "/docs" },
+      { label: "API Reference", href: "/api" },
+      { label: "Community", href: "/community" },
+      { label: "Status", href: "https://status.storentia.com", external: true },
     ],
   },
   {
-    heading: 'Legal',
+    heading: "Legal",
     links: [
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
-      { label: 'Cookie Policy', href: '/cookies' },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
+      { label: "Cookie Policy", href: "/cookies" },
     ],
   },
 ];
 
 const SOCIALS = [
-  { Icon: TwitterX, label: 'Twitter / X', href: 'https://twitter.com/storentia' },
-  { Icon: GitHubIcon, label: 'GitHub', href: 'https://github.com/storentia' },
-  { Icon: LinkedInIcon, label: 'LinkedIn', href: 'https://linkedin.com/company/storentia' },
-  { Icon: YouTubeIcon, label: 'YouTube', href: 'https://youtube.com/@storentia' },
+  { Icon: TwitterX, label: "Twitter / X", href: "https://twitter.com/storentia" },
+  { Icon: GitHubIcon, label: "GitHub", href: "https://github.com/storentia" },
+  { Icon: LinkedInIcon, label: "LinkedIn", href: "https://linkedin.com/company/storentia" },
+  { Icon: YouTubeIcon, label: "YouTube", href: "https://youtube.com/@storentia" },
 ];
 
 export function Footer() {
@@ -68,11 +68,9 @@ export function Footer() {
 
   return (
     <footer id="contact-us" className="relative bg-black border-t border-zinc-900 overflow-hidden">
-
       {/* Top section */}
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8">
-
           {/* Brand column */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -82,12 +80,7 @@ export function Footer() {
             className="lg:col-span-1"
           >
             <Link href="/" className="relative inline-block h-7 w-28 mb-6">
-              <Image
-                src="/logo-white.png"
-                alt="Storentia"
-                fill
-                className="object-contain"
-              />
+              <Image src="/logo-white.png" alt="Storentia" fill className="object-contain" />
             </Link>
             <p className="text-zinc-500 text-sm font-roboto leading-relaxed max-w-xs">
               The commerce platform built for speed, scale, and beautiful storefronts.
@@ -133,7 +126,7 @@ export function Footer() {
                     <li key={label}>
                       <Link
                         href={href}
-                        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                         className="text-zinc-500 text-sm font-roboto hover:text-white transition-colors duration-200"
                       >
                         {label}

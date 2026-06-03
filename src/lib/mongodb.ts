@@ -1,5 +1,5 @@
-import { MongoClient, type Collection } from 'mongodb';
-import { requireEnv } from './env';
+import { type Collection, MongoClient } from "mongodb";
+import { requireEnv } from "./env";
 
 export interface ContactSubmission {
   name: string;
@@ -15,9 +15,9 @@ declare global {
 }
 
 function getClient(): MongoClient {
-  const uri = requireEnv('MONGODB_URI');
+  const uri = requireEnv("MONGODB_URI");
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     if (!global._mongoClient) {
       global._mongoClient = new MongoClient(uri);
     }
@@ -30,5 +30,5 @@ function getClient(): MongoClient {
 export async function getContactsCollection(): Promise<Collection<ContactSubmission>> {
   const client = getClient();
   await client.connect();
-  return client.db('storentia').collection<ContactSubmission>('contact_submissions');
+  return client.db("storentia").collection<ContactSubmission>("contact_submissions");
 }
