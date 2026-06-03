@@ -60,7 +60,7 @@ export function Pricing() {
             pricing.
           </h2>
           <p className="mt-6 text-zinc-500 font-roboto text-lg leading-relaxed max-w-2xl">
-            No hidden fees. No surprises. Pay only for what you use.
+            No hidden fees. No surprises. Pay only for what you use.{" "}
           </p>
         </motion.div>
 
@@ -82,7 +82,11 @@ export function Pricing() {
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  transition={{
+                    duration: 0.5,
+                    delay: i * 0.1,
+                    ease: [0.21, 0.47, 0.32, 0.98],
+                  }}
                   className="relative flex flex-col rounded-[2.5rem] p-8 pb-7 transition-all duration-500 border border-white/[0.06] bg-[#090909] w-full md:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] xl:w-[calc(25%-1.5rem)] max-w-[310px] min-h-[520px] hover:border-white/[0.12] hover:bg-[#0D0D0D] hover:shadow-[0_0_50px_-12px_rgba(59,130,246,0.12)] group/card"
                 >
                   {/* Top/Bottom Notches */}

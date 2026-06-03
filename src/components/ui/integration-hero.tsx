@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { Button } from "@/components/ui/button";
 
 const ICONS_ROW1 = [
@@ -43,8 +42,8 @@ export default function IntegrationHero() {
           <br className="hidden sm:block" /> to everything.
         </h1>
         <p className="mt-4 text-lg text-gray-500 dark:text-zinc-400 max-w-xl mx-auto">
-          Payments, shipping, marketing, analytics — plug in the tools your business already runs
-          on. No custom code. No friction.
+          Payments, shipping, marketing, analytics. Plug in the tools your
+          business already runs on. No custom code. No friction.
         </p>
         <Button
           variant="default"
@@ -62,7 +61,11 @@ export default function IntegrationHero() {
                 key={i}
                 className="h-16 w-16 flex-shrink-0 rounded-full bg-white dark:bg-gray-300 shadow-md flex items-center justify-center"
               >
-                <img src={src} alt="integration icon" className="h-10 w-10 object-contain" />
+                <img
+                  src={src}
+                  alt="integration icon"
+                  className="h-10 w-10 object-contain"
+                />
               </div>
             ))}
           </div>
@@ -74,7 +77,11 @@ export default function IntegrationHero() {
                 key={i}
                 className="h-16 w-16 flex-shrink-0 rounded-full bg-white dark:bg-gray-300 shadow-md flex items-center justify-center"
               >
-                <img src={src} alt="integration icon" className="h-10 w-10 object-contain" />
+                <img
+                  src={src}
+                  alt="integration icon"
+                  className="h-10 w-10 object-contain"
+                />
               </div>
             ))}
           </div>
