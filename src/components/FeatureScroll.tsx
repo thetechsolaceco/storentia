@@ -1,33 +1,38 @@
 "use client";
 
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const features = [
   {
-    title: "Launch Stores Faster",
+    title: "Beautiful Storefronts, Ready in Hours",
     description:
-      "Build and deploy fully functional online stores in minutes with a streamlined workflow designed for modern businesses and developers.",
+      "Storentia comes with a library of professionally designed storefront templates built for every category, from fashion and food to electronics and home decor. Pick a template, add your products, connect your payment gateway, and go live. No design skills needed. No developers required. Your store looks the part from day one.",
     image: "/dashboard/desk1.png",
   },
   {
-    title: "Built for Scale",
+    title: "One Dashboard, Every Store",
     description:
-      "Manage products, orders, analytics, and multiple storefronts effortlessly with infrastructure designed to grow alongside your business.",
+      "Manage all your stores, products, orders, customers, inventory, and analytics from a single Storentia dashboard. Whether you run one store or twenty, everything is in one place. Switch between storefronts in seconds, track performance across brands, and handle operations without logging in and out of separate accounts.",
     image: "/dashboard/desk2.png",
   },
   {
-    title: "Developer Friendly APIs",
+    title: "250+ Integrations, Zero Friction",
     description:
-      "Integrate, customize, and automate every part of your commerce experience using powerful APIs and flexible architecture.",
+      "Storentia connects with 250+ tools your business already uses. Payments via Razorpay, PayU, Stripe, and PayPal. Shipping via Shiprocket, Delhivery, and FedEx. Marketing via Mailchimp, WhatsApp Business, and Meta Ads. Analytics via Google Analytics and custom BI. Every integration installs in minutes, no custom code, no extra platform fees, no friction.",
     image: "/dashboard/desk3.png",
   },
   {
-    title: "Unified Commerce Experience",
+    title: "Full API Access for Developers",
     description:
-      "Control your entire ecosystem from one centralized platform with seamless management across stores, customers, and payments.",
+      "Storentia gives developers complete control via a well-documented REST API with full access to products, orders, customers, inventory, payments, and store settings. Generate API tokens, set up webhooks, automate workflows, and build custom integrations without hitting platform walls. Available on Advanced and Enterprise plans.",
     image: "/dashboard/desk4.png",
   },
 ];
@@ -42,14 +47,21 @@ export function FeatureScroll() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const index = Math.min(Math.floor(latest * features.length), features.length - 1);
+    const index = Math.min(
+      Math.floor(latest * features.length),
+      features.length - 1,
+    );
     if (index !== activeIndex) {
       setActiveIndex(index);
     }
   });
 
   return (
-    <section id="experience" ref={containerRef} className="relative h-[400vh] bg-black">
+    <section
+      id="experience"
+      ref={containerRef}
+      className="relative h-[400vh] bg-black"
+    >
       <div className="sticky top-0 z-10 h-screen flex items-center overflow-hidden">
         <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 items-center">
           {/* Left Side: Content */}
@@ -60,7 +72,7 @@ export function FeatureScroll() {
                   Platform Features
                 </h2>
                 <h3 className="text-4xl md:text-6xl font-bold font-hanken text-white tracking-tight leading-[1.1]">
-                  Designed for the <br /> modern enterprise.
+                  Everything your store needs.
                 </h3>
               </div>
 
@@ -101,7 +113,10 @@ export function FeatureScroll() {
                         opacity: activeIndex === i ? 1 : 0,
                         y: activeIndex === i ? 0 : 10,
                       }}
-                      transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+                      transition={{
+                        duration: 0.5,
+                        ease: [0.21, 0.47, 0.32, 0.98],
+                      }}
                       className="text-zinc-400 font-roboto leading-relaxed overflow-hidden text-base md:text-lg"
                     >
                       {feature.description}
@@ -120,7 +135,12 @@ export function FeatureScroll() {
                   activeIndex === i && (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, x: "30%", scale: 1.1, rotateY: -10 }}
+                      initial={{
+                        opacity: 0,
+                        x: "30%",
+                        scale: 1.1,
+                        rotateY: -10,
+                      }}
                       animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }}
                       exit={{ opacity: 0, x: "-10%", scale: 0.95, rotateY: 10 }}
                       transition={{
