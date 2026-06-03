@@ -137,13 +137,53 @@ export function Header() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-zinc-400 hover:text-white transition-colors focus:outline-none"
+            className="md:hidden text-zinc-400 hover:text-white transition-colors focus:outline-none relative z-[70]"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
+
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div className="fixed inset-0 z-[60] bg-black flex flex-col items-center justify-center">
+          <nav className="flex flex-col items-center gap-8">
+            {navLinks.map((link) => {
+              const targetId = link.toLowerCase().replace(/\s+/g, '-');
+              return (
+                <Link
+                  key={link}
+                  href={`#${targetId}`}
+                  onClick={(e) => {
+                    setIsOpen(false);
+                    handleNavClick(e, targetId);
+                  }}
+                  className="text-4xl font-medium text-zinc-400 hover:text-white transition-colors"
+                >
+                  {link}
+                </Link>
+              );
+            })}
+            <div className="flex flex-col items-center gap-6 mt-8">
+              <Link 
+                href="#" 
+                onClick={() => setIsOpen(false)}
+                className="text-2xl text-zinc-400 hover:text-white transition-colors"
+              >
+                Log in
+              </Link>
+              <Link 
+                href="#" 
+                onClick={() => setIsOpen(false)}
+                className="text-2xl text-white px-8 py-3 rounded-full font-medium border border-zinc-800 hover:bg-zinc-900 transition-all"
+              >
+                Sign up
+              </Link>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
