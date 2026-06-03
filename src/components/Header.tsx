@@ -5,10 +5,12 @@ import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi';
+import { Menu, X } from 'lucide-react';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const navLinks = ['Pricing', 'Experience', 'Portfolio', 'Clients', 'FAQ'];
 
   // Prevent hydration mismatch
@@ -101,7 +103,7 @@ export function Header() {
         </div>
 
         {/* Centered Menu - Strictly single line */}
-        <nav className="flex-1 flex justify-center overflow-hidden">
+        <nav className="flex-1 hidden md:flex justify-center overflow-hidden">
           <ul className="flex items-center gap-x-6 lg:gap-x-10 text-[13px] font-medium text-zinc-400">
             {navLinks.map((link) => {
               const targetId = link.toLowerCase().replace(/\s+/g, '-');
@@ -127,10 +129,19 @@ export function Header() {
           </Link>
           <Link 
             href="#" 
-            className="text-white px-5 py-2 rounded-full font-medium border border-zinc-800 hover:bg-zinc-900 transition-all whitespace-nowrap"
+            className="text-white px-5 py-2 rounded-full font-medium border border-zinc-800 hover:bg-zinc-900 transition-all hidden sm:block whitespace-nowrap"
           >
             Sign up
           </Link>
+          
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-zinc-400 hover:text-white transition-colors focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
     </header>
