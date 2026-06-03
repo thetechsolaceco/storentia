@@ -19,6 +19,15 @@ export function Header() {
     setMounted(true);
   }, []);
 
+  // Handle body scroll lock
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isOpen]);
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
@@ -87,7 +96,7 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/5 dark:bg-black/5 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo - Left */}
-        <div className="w-1/4">
+        <div className="md:w-1/4 w-auto">
           <Link 
             href="/" 
             onClick={handleLogoClick}
@@ -124,7 +133,7 @@ export function Header() {
         </nav>
         
         {/* Actions - Right */}
-        <div className="w-1/4 flex items-center justify-end gap-4 lg:gap-6 text-sm">
+        <div className="md:w-1/4 w-auto flex items-center justify-end gap-4 lg:gap-6 text-sm">
           <Link href="#" className="text-zinc-400 hover:text-white transition-colors hidden sm:block whitespace-nowrap">
             Log in
           </Link>
@@ -138,7 +147,7 @@ export function Header() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-zinc-400 hover:text-white transition-colors focus:outline-none relative z-[70]"
+            className="md:hidden text-zinc-400 hover:text-white transition-colors focus:outline-none relative z-[70] ml-2"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
