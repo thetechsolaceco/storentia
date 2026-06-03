@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -146,44 +147,78 @@ export function Header() {
       </div>
 
       {/* Mobile Overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 z-[60] bg-black flex flex-col items-center justify-center">
-          <nav className="flex flex-col items-center gap-8">
-            {navLinks.map((link) => {
-              const targetId = link.toLowerCase().replace(/\s+/g, '-');
-              return (
-                <Link
-                  key={link}
-                  href={`#${targetId}`}
-                  onClick={(e) => {
-                    setIsOpen(false);
-                    handleNavClick(e, targetId);
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-0 z-[60] bg-black flex flex-col items-center justify-center"
+          >
+            <nav className="flex flex-col items-center gap-8">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.1
+                    }
+                  }
+                }}
+                className="flex flex-col items-center gap-8"
+              >
+                {navLinks.map((link) => {
+                  const targetId = link.toLowerCase().replace(/\s+/g, '-');
+                  return (
+                    <motion.div
+                      key={link}
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0 }
+                      }}
+                    >
+                      <Link
+                        href={`#${targetId}`}
+                        onClick={(e) => {
+                          setIsOpen(false);
+                          handleNavClick(e, targetId);
+                        }}
+                        className="text-4xl font-medium text-zinc-400 hover:text-white transition-colors"
+                      >
+                        {link}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+                <motion.div 
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 }
                   }}
-                  className="text-4xl font-medium text-zinc-400 hover:text-white transition-colors"
+                  className="flex flex-col items-center gap-6 mt-8"
                 >
-                  {link}
-                </Link>
-              );
-            })}
-            <div className="flex flex-col items-center gap-6 mt-8">
-              <Link 
-                href="#" 
-                onClick={() => setIsOpen(false)}
-                className="text-2xl text-zinc-400 hover:text-white transition-colors"
-              >
-                Log in
-              </Link>
-              <Link 
-                href="#" 
-                onClick={() => setIsOpen(false)}
-                className="text-2xl text-white px-8 py-3 rounded-full font-medium border border-zinc-800 hover:bg-zinc-900 transition-all"
-              >
-                Sign up
-              </Link>
-            </div>
-          </nav>
-        </div>
-      )}
+                  <Link 
+                    href="#" 
+                    onClick={() => setIsOpen(false)}
+                    className="text-2xl text-zinc-400 hover:text-white transition-colors"
+                  >
+                    Log in
+                  </Link>
+                  <Link 
+                    href="#" 
+                    onClick={() => setIsOpen(false)}
+                    className="text-2xl text-white px-8 py-3 rounded-full font-medium border border-zinc-800 hover:bg-zinc-900 transition-all"
+                  >
+                    Sign up
+                  </Link>
+                </motion.div>
+              </motion.div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
