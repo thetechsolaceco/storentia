@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 export async function GET() {
-  const res = await fetch('https://apis.storentia.com/v1/public/plans', {
-    headers: { accept: 'application/json' },
+  const res = await fetch("https://apis.storentia.com/v1/public/plans", {
+    headers: { accept: "application/json" },
     next: { revalidate: 300 },
   });
 
