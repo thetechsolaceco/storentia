@@ -1,41 +1,41 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useState } from "react";
 
-type Status = 'idle' | 'pending' | 'success' | 'error';
+type Status = "idle" | "pending" | "success" | "error";
 
 export default function ContactPage() {
-  const [status, setStatus] = useState<Status>('idle');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus('pending');
-    setErrorMsg('');
+    setStatus("pending");
+    setErrorMsg("");
 
     const formData = new FormData(e.currentTarget);
     const body = Object.fromEntries(formData.entries());
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
 
-      const data = await res.json() as { success?: boolean; error?: string };
+      const data = (await res.json()) as { success?: boolean; error?: string };
 
       if (res.ok) {
-        setStatus('success');
+        setStatus("success");
       } else {
-        setStatus('error');
-        setErrorMsg(data.error ?? 'Something went wrong.');
+        setStatus("error");
+        setErrorMsg(data.error ?? "Something went wrong.");
       }
     } catch {
-      setStatus('error');
-      setErrorMsg('Network error. Please try again.');
+      setStatus("error");
+      setErrorMsg("Network error. Please try again.");
     }
   }
 
@@ -102,21 +102,32 @@ export default function ContactPage() {
             transition={{ duration: 0.5, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="md:col-span-3"
           >
-            {status === 'success' ? (
+            {status === "success" ? (
               <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 text-center">
                 <div className="w-12 h-12 rounded-full bg-zinc-800 flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
                 <p className="text-white font-medium font-hanken text-lg mb-2">Message sent</p>
-                <p className="text-zinc-500 text-sm font-roboto">We&apos;ll get back to you within 24 hours.</p>
+                <p className="text-zinc-500 text-sm font-roboto">
+                  We&apos;ll get back to you within 24 hours.
+                </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="name" className="text-xs font-medium font-roboto text-zinc-400 uppercase tracking-widest">
+                    <label
+                      htmlFor="name"
+                      className="text-xs font-medium font-roboto text-zinc-400 uppercase tracking-widest"
+                    >
                       Name
                     </label>
                     <input
@@ -129,7 +140,10 @@ export default function ContactPage() {
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="email" className="text-xs font-medium font-roboto text-zinc-400 uppercase tracking-widest">
+                    <label
+                      htmlFor="email"
+                      className="text-xs font-medium font-roboto text-zinc-400 uppercase tracking-widest"
+                    >
                       Email
                     </label>
                     <input
@@ -144,7 +158,10 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="subject" className="text-xs font-medium font-roboto text-zinc-400 uppercase tracking-widest">
+                  <label
+                    htmlFor="subject"
+                    className="text-xs font-medium font-roboto text-zinc-400 uppercase tracking-widest"
+                  >
                     Subject
                   </label>
                   <input
@@ -158,7 +175,10 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="message" className="text-xs font-medium font-roboto text-zinc-400 uppercase tracking-widest">
+                  <label
+                    htmlFor="message"
+                    className="text-xs font-medium font-roboto text-zinc-400 uppercase tracking-widest"
+                  >
                     Message
                   </label>
                   <textarea
@@ -171,16 +191,16 @@ export default function ContactPage() {
                   />
                 </div>
 
-                {status === 'error' && (
+                {status === "error" && (
                   <p className="text-red-400 text-sm font-roboto">{errorMsg}</p>
                 )}
 
                 <button
                   type="submit"
-                  disabled={status === 'pending'}
+                  disabled={status === "pending"}
                   className="w-full py-3 px-6 rounded-full bg-white text-black font-medium text-sm font-hanken transition-all duration-200 hover:bg-zinc-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {status === 'pending' ? 'Sending…' : 'Send Message'}
+                  {status === "pending" ? "Sending…" : "Send Message"}
                 </button>
               </form>
             )}

@@ -1,21 +1,20 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Hero } from '@/components/Hero';
-import { StorefrontGrid } from '@/components/StorefrontGrid';
-import { LogoCloud } from '@/components/ui/logo-cloud-2';
-import { FeatureScroll } from '@/components/FeatureScroll';
-import IntegrationHero from '@/components/ui/integration-hero';
-import { FAQ } from '@/components/FAQ';
-import { Pricing } from '@/components/Pricing';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import { FAQ } from "@/components/FAQ";
+import { FeatureScroll } from "@/components/FeatureScroll";
+import { Hero } from "@/components/Hero";
+import { Pricing } from "@/components/Pricing";
+import { StorefrontGrid } from "@/components/StorefrontGrid";
+import IntegrationHero from "@/components/ui/integration-hero";
+import { LogoCloud } from "@/components/ui/logo-cloud-2";
 
 export default function Home() {
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
 
   return (
     <main className="min-h-screen relative">
-
       {/* Dynamic background — only active over the storefront grid area */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <AnimatePresence>
@@ -29,8 +28,8 @@ export default function Home() {
               className="absolute inset-0"
               style={{
                 backgroundImage: `url(${hoveredImage})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                backgroundSize: "cover",
+                backgroundPosition: "center",
               }}
             />
           )}
@@ -47,8 +46,7 @@ export default function Home() {
         <section id="clients" className="py-24 px-6 border-b border-zinc-900 overflow-hidden">
           <div className="max-w-4xl mx-auto">
             <h2 className="mb-12 text-center font-medium text-xl text-zinc-400 tracking-tight md:text-3xl font-hanken">
-              Companies we{' '}
-              <span className="font-semibold text-white">collaborate</span> with.
+              Companies we <span className="font-semibold text-white">collaborate</span> with.
             </h2>
             <LogoCloud />
           </div>

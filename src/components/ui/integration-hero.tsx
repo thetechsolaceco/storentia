@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import React from "react";
+import { Button } from "@/components/ui/button";
 
 const ICONS_ROW1 = [
   "https://cdn-icons-png.flaticon.com/512/5968/5968854.png",
@@ -39,11 +39,12 @@ export default function IntegrationHero() {
           250+ Integrations
         </span>
         <h1 className="text-4xl lg:text-6xl font-bold tracking-tight">
-          Your store, connected<br className="hidden sm:block" /> to everything.
+          Your store, connected
+          <br className="hidden sm:block" /> to everything.
         </h1>
         <p className="mt-4 text-lg text-gray-500 dark:text-zinc-400 max-w-xl mx-auto">
-          Payments, shipping, marketing, analytics — plug in the tools your
-          business already runs on. No custom code. No friction.
+          Payments, shipping, marketing, analytics — plug in the tools your business already runs
+          on. No custom code. No friction.
         </p>
         <Button
           variant="default"

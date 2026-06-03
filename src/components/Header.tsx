@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi';
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 
 export function Header() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
-  const navLinks = ['Pricing', 'Experience', 'Portfolio', 'Clients', 'FAQ'];
+  const navLinks = ["Pricing", "Experience", "Portfolio", "Clients", "FAQ"];
 
   // Prevent hydration mismatch
   useEffect(() => {
@@ -29,8 +29,7 @@ export function Header() {
     const duration = 600;
     const startTime = performance.now();
 
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 
     const animateScroll = () => {
       const elapsed = performance.now() - startTime;
@@ -39,7 +38,7 @@ export function Header() {
       if (progress < 1) {
         requestAnimationFrame(animateScroll);
       } else {
-        window.history.pushState(null, '', `#${targetId}`);
+        window.history.pushState(null, "", `#${targetId}`);
       }
     };
 
@@ -56,16 +55,15 @@ export function Header() {
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    if (window.location.pathname !== '/') {
-      router.push('/');
+    if (window.location.pathname !== "/") {
+      router.push("/");
       return;
     }
 
     const startY = window.scrollY;
     const duration = 600;
     const startTime = performance.now();
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 
     const animateScroll = () => {
       const elapsed = performance.now() - startTime;
@@ -74,7 +72,7 @@ export function Header() {
       if (progress < 1) {
         requestAnimationFrame(animateScroll);
       } else {
-        window.history.pushState(null, '', '/');
+        window.history.pushState(null, "", "/");
       }
     };
 
@@ -86,11 +84,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo - Left */}
         <div className="w-1/4">
-          <Link 
-            href="/" 
-            onClick={handleLogoClick}
-            className="relative h-8 w-24 block"
-          >
+          <Link href="/" onClick={handleLogoClick} className="relative h-8 w-24 block">
             <Image
               src="/logo-white.png"
               alt="Storentia Logo"
@@ -105,11 +99,11 @@ export function Header() {
         <nav className="flex-1 flex justify-center overflow-hidden">
           <ul className="flex items-center gap-x-6 lg:gap-x-10 text-[13px] font-medium text-zinc-400">
             {navLinks.map((link) => {
-              const targetId = link.toLowerCase().replace(/\s+/g, '-');
+              const targetId = link.toLowerCase().replace(/\s+/g, "-");
               return (
                 <li key={link}>
-                  <Link 
-                    href={`#${targetId}`} 
+                  <Link
+                    href={`#${targetId}`}
                     onClick={(e) => handleNavClick(e, targetId)}
                     className="hover:text-white transition-colors whitespace-nowrap"
                   >
@@ -120,7 +114,7 @@ export function Header() {
             })}
           </ul>
         </nav>
-        
+
         {/* Actions - Right */}
         <div className="w-1/4 flex items-center justify-end gap-4 lg:gap-6 text-sm">
           <Link
