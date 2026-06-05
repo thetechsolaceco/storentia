@@ -111,7 +111,7 @@ export function Pricing() {
 
                   <div className="flex items-baseline gap-2 mb-6">
                     <span className="text-5xl font-bold font-hanken text-white tracking-tighter">
-                      ${plan.price.toFixed(0)}
+                      ₹{plan.price.toFixed(0)}
                     </span>
                     <span className="text-zinc-600 font-roboto text-[13px] font-medium">
                       per month
