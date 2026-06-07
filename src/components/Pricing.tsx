@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Check, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { capitalizeFirstLetter } from "@/lib/utils";
 
 interface Perk {
   id: string;
@@ -31,6 +32,7 @@ export function Pricing() {
   const totalCards = plans.length + 1; // plans + custom
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     fetch("/api/plans")
       .then((r) => r.json())
@@ -160,7 +162,7 @@ export function Pricing() {
                       ...basePerks,
                       {
                         id: "ai-perk-1",
-                        label: "AI Storefront Copilot & auto-layout",
+                        label: "AI storefront copilot & auto-layout",
                         is_highlighted: true,
                       },
                       {
@@ -216,10 +218,10 @@ export function Pricing() {
 
                     <div className="h-[115px] flex flex-col justify-start mb-1">
                       <h3 className="text-2xl font-bold font-hanken tracking-tight text-white mb-0.5">
-                        {plan.name}
+                        {capitalizeFirstLetter(plan.name)}
                       </h3>
                       <p className="text-zinc-500 font-roboto text-[13px] leading-relaxed">
-                        {plan.description}
+                        {capitalizeFirstLetter(plan.description)}
                       </p>
                       {isAdvanced && (
                         <div className="inline-flex items-center gap-1.5 px-2.5 py-1 mt-2.5 rounded-full border border-green-500/25 bg-green-500/10 text-green-300 font-roboto text-[10px] uppercase tracking-wider font-semibold w-fit">
@@ -265,7 +267,7 @@ export function Pricing() {
                                 : "text-zinc-400"
                             }`}
                           >
-                            {perk.label}
+                            {capitalizeFirstLetter(perk.label)}
                           </span>
                         </li>
                       ))}
@@ -363,7 +365,7 @@ export function Pricing() {
                         className="mt-1 text-zinc-600 group-hover/card:text-green-500 transition-colors duration-500 shrink-0"
                       />
                       <span className="font-roboto text-[13px] leading-tight text-zinc-400">
-                        {perk}
+                        {capitalizeFirstLetter(perk)}
                       </span>
                     </li>
                   ))}
