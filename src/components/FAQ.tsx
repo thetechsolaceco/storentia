@@ -126,18 +126,16 @@ export function FAQ() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mb-16"
+          className="mb-16 text-center max-w-2xl mx-auto"
         >
-          <p className="text-zinc-500 text-sm font-roboto uppercase tracking-widest font-medium mb-4">
+          <p className="text-zinc-500 text-[10px] md:text-xs font-roboto uppercase tracking-widest font-medium mb-4">
             FAQ
           </p>
-          <h2 className="text-4xl md:text-6xl font-bold font-hanken tracking-tight text-white leading-[1.1]">
-            Everything you
-            <br />
-            need to know.
+          <h2 className="text-3xl md:text-5xl font-bold font-hanken tracking-tight text-white leading-[1.1]">
+            Everything you need to know.
           </h2>
-          <p className="mt-5 text-zinc-400 font-roboto text-lg leading-relaxed max-w-xl">
-            Can't find the answer you're looking for?{" "}
+          <p className="mt-5 text-zinc-400 font-roboto text-base md:text-lg leading-relaxed">
+            Can&apos;t find the answer you&apos;re looking for?{" "}
             <a
               href="mailto:contact@techsolace.in"
               className="text-white underline underline-offset-4 decoration-zinc-600 hover:decoration-white transition-all duration-200"

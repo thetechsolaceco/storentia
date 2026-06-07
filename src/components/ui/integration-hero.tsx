@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const ICONS_ROW1 = [
@@ -38,11 +39,12 @@ export default function IntegrationHero() {
           250+ Integrations
         </span>
         <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight leading-[1.2]">
-          Your store, connected<br className="hidden sm:block" /> to everything.
+          Your store, connected
+          <br className="hidden sm:block" /> to everything.
         </h1>
         <p className="mt-4 text-base md:text-lg text-gray-500 dark:text-zinc-400 max-w-xl mx-auto">
-          Payments, shipping, marketing, analytics — plug in the tools your
-          business already runs on. No custom code. No friction.
+          Payments, shipping, marketing, analytics — plug in the tools your business already runs
+          on. No custom code. No friction.
         </p>
         <Button
           variant="default"
@@ -54,36 +56,48 @@ export default function IntegrationHero() {
         {/* Carousel */}
         <div className="mt-12 overflow-hidden relative pb-2">
           {/* Row 1 — scrolls left */}
-          <div className="flex gap-10 whitespace-nowrap animate-scroll-left">
+          <motion.div
+            drag="x"
+            dragConstraints={{ right: 0, left: -1000 }}
+            dragTransition={{
+              bounceStiffness: 600,
+              bounceDamping: 20,
+              modifyTarget: (target) => Math.round(target / 104) * 104,
+            }}
+            className="flex gap-10 whitespace-nowrap md:animate-scroll-left md:drag-none cursor-grab active:cursor-grabbing md:cursor-default"
+            style={{ touchAction: "pan-y" }}
+          >
             {repeatedIcons(ICONS_ROW1, 4).map((src, i) => (
               <div
                 key={i}
-                className="h-16 w-16 flex-shrink-0 rounded-full bg-white dark:bg-gray-300 shadow-md flex items-center justify-center"
+                className="h-16 w-16 flex-shrink-0 rounded-full bg-white dark:bg-zinc-800 shadow-md flex items-center justify-center border border-zinc-200 dark:border-zinc-800"
               >
-                <img
-                  src={src}
-                  alt="integration icon"
-                  className="h-10 w-10 object-contain"
-                />
+                <img src={src} alt="integration icon" className="h-10 w-10 object-contain" />
               </div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Row 2 — scrolls right */}
-          <div className="flex gap-10 whitespace-nowrap mt-6 animate-scroll-right">
+          <motion.div
+            drag="x"
+            dragConstraints={{ right: 0, left: -1000 }}
+            dragTransition={{
+              bounceStiffness: 600,
+              bounceDamping: 20,
+              modifyTarget: (target) => Math.round(target / 104) * 104,
+            }}
+            className="flex gap-10 whitespace-nowrap mt-6 md:animate-scroll-right md:drag-none cursor-grab active:cursor-grabbing md:cursor-default"
+            style={{ touchAction: "pan-y" }}
+          >
             {repeatedIcons(ICONS_ROW2, 4).map((src, i) => (
               <div
                 key={i}
-                className="h-16 w-16 flex-shrink-0 rounded-full bg-white dark:bg-gray-300 shadow-md flex items-center justify-center"
+                className="h-16 w-16 flex-shrink-0 rounded-full bg-white dark:bg-zinc-800 shadow-md flex items-center justify-center border border-zinc-200 dark:border-zinc-800"
               >
-                <img
-                  src={src}
-                  alt="integration icon"
-                  className="h-10 w-10 object-contain"
-                />
+                <img src={src} alt="integration icon" className="h-10 w-10 object-contain" />
               </div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Fade overlays */}
           <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white dark:from-black to-transparent pointer-events-none" />

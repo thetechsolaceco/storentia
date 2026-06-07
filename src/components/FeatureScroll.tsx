@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useScroll,
-} from "framer-motion";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -47,32 +42,25 @@ export function FeatureScroll() {
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const index = Math.min(
-      Math.floor(latest * features.length),
-      features.length - 1,
-    );
+    const index = Math.min(Math.floor(latest * features.length), features.length - 1);
     if (index !== activeIndex) {
       setActiveIndex(index);
     }
   });
 
   return (
-    <section
-      id="experience"
-      ref={containerRef}
-      className="relative h-[400vh] bg-black"
-    >
+    <section id="experience" ref={containerRef} className="relative h-[400vh] bg-black">
       <div className="sticky top-0 z-0 h-screen flex items-center overflow-hidden">
         <div className="w-full h-full grid grid-cols-1 lg:grid-cols-2 items-center">
           {/* Left Side: Content */}
           <div className="h-full flex flex-col justify-center px-6 lg:px-24 xl:px-32 order-2 lg:order-1 py-10 lg:py-0">
-            <div className="max-w-xl">
+            <div className="max-w-xl mx-auto text-left">
               <div className="space-y-4 mb-8 md:mb-12">
-                <h2 className="text-zinc-500 text-xs md:text-sm font-roboto uppercase tracking-widest font-medium">
+                <h2 className="text-zinc-500 text-[10px] md:text-xs font-roboto uppercase tracking-widest font-medium">
                   Platform Features
                 </h2>
-                <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold font-hanken text-white tracking-tight leading-[1.1]">
-                  Designed for the <br className="hidden md:block" /> modern enterprise.
+                <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold font-hanken text-white tracking-tight leading-[1.1]">
+                  Designed for the modern enterprise.
                 </h3>
               </div>
 
@@ -91,7 +79,7 @@ export function FeatureScroll() {
 
                 {features.map((feature, i) => (
                   <div
-                    key={i}
+                    key={feature.title}
                     className={cn(
                       "group relative pl-6 md:pl-10 transition-all duration-700",
                       activeIndex === i ? "opacity-100" : "opacity-20",
@@ -131,7 +119,7 @@ export function FeatureScroll() {
                 (feature, i) =>
                   activeIndex === i && (
                     <motion.div
-                      key={i}
+                      key={feature.title}
                       initial={{
                         opacity: 0,
                         x: "30%",

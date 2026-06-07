@@ -6,8 +6,6 @@ export const metadata = {
 };
 
 export default function PrivacyPage() {
-  const year = new Date().getFullYear();
-
   return (
     <main className="min-h-screen bg-black text-zinc-300 px-6 pt-32 pb-24">
       <div className="max-w-3xl mx-auto">

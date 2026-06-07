@@ -1,11 +1,12 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { FiArrowRight } from "react-icons/fi";
 
 export function Header() {
   const [mounted, setMounted] = useState(false);
@@ -14,6 +15,7 @@ export function Header() {
   const navLinks = ["Pricing", "Experience", "Portfolio", "Clients", "FAQ"];
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -25,20 +27,18 @@ export function Header() {
     }
   }, [isOpen]);
 
-  const scrollToId = (targetId: string) => {
+  const scrollToId = useCallback((targetId: string) => {
     const element = document.getElementById(targetId);
     if (!element) return false;
 
     const headerOffset = 90;
-    const offsetPosition =
-      element.getBoundingClientRect().top + window.scrollY - headerOffset;
+    const offsetPosition = element.getBoundingClientRect().top + window.scrollY - headerOffset;
     const startY = window.scrollY;
     const difference = offsetPosition - startY;
     const duration = 600;
     const startTime = performance.now();
 
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 
     const animateScroll = () => {
       const elapsed = performance.now() - startTime;
@@ -53,44 +53,46 @@ export function Header() {
 
     requestAnimationFrame(animateScroll);
     return true;
-  };
+  }, []);
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    targetId: string,
-  ) => {
-    e.preventDefault();
-    if (!scrollToId(targetId)) {
-      router.push(`/#${targetId}`);
-    }
-  };
-
-  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    if (window.location.pathname !== "/") {
-      router.push("/");
-      return;
-    }
-
-    const startY = window.scrollY;
-    const duration = 600;
-    const startTime = performance.now();
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
-
-    const animateScroll = () => {
-      const elapsed = performance.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      window.scrollTo(0, startY * (1 - easeInOutCubic(progress)));
-      if (progress < 1) {
-        requestAnimationFrame(animateScroll);
-      } else {
-        window.history.pushState(null, "", "/");
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+      e.preventDefault();
+      if (!scrollToId(targetId)) {
+        router.push(`/#${targetId}`);
       }
-    };
+    },
+    [router, scrollToId],
+  );
 
-    requestAnimationFrame(animateScroll);
-  };
+  const handleLogoClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      if (window.location.pathname !== "/") {
+        router.push("/");
+        return;
+      }
+
+      const startY = window.scrollY;
+      const duration = 600;
+      const startTime = performance.now();
+      const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
+
+      const animateScroll = () => {
+        const elapsed = performance.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        window.scrollTo(0, startY * (1 - easeInOutCubic(progress)));
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        } else {
+          window.history.pushState(null, "", "/");
+        }
+      };
+
+      requestAnimationFrame(animateScroll);
+    },
+    [router],
+  );
 
   if (!mounted) return null;
 
@@ -100,11 +102,7 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo - Left */}
           <div className="md:w-1/4 w-auto">
-            <Link
-              href="/"
-              onClick={handleLogoClick}
-              className="relative h-8 w-24 block"
-            >
+            <Link href="/" onClick={handleLogoClick} className="relative h-8 w-24 block">
               <Image
                 src="/logo-white.png"
                 alt="Storentia Logo"
@@ -138,16 +136,11 @@ export function Header() {
           {/* Actions - Right */}
           <div className="md:w-1/4 w-auto flex items-center justify-end gap-4 lg:gap-6 text-sm">
             <Link
-              href="#"
-              className="text-zinc-400 hover:text-white transition-colors hidden sm:block whitespace-nowrap"
+              href="https://app.storentia.com/login"
+              className="group inline-flex items-center gap-2 bg-white text-black px-5 py-2 rounded-full font-semibold text-xs md:text-sm hover:bg-zinc-100 transition-all duration-200 hidden sm:flex whitespace-nowrap"
             >
-              Log in
-            </Link>
-            <Link
-              href="#"
-              className="text-white px-5 py-2 rounded-full font-medium border border-zinc-800 hover:bg-zinc-900 transition-all hidden sm:block whitespace-nowrap"
-            >
-              Sign up
+              Get Started
+              <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
 
             {/* Mobile Menu Toggle */}
@@ -225,18 +218,12 @@ export function Header() {
                   className="flex flex-col items-center gap-6 mt-8"
                 >
                   <Link
-                    href="#"
+                    href="https://app.storentia.com/login"
                     onClick={() => setIsOpen(false)}
-                    className="text-2xl text-zinc-400 hover:text-white transition-colors"
+                    className="group inline-flex items-center gap-2 bg-white text-black px-8 py-3 rounded-full font-semibold text-lg hover:bg-zinc-100 transition-all duration-200"
                   >
-                    Log in
-                  </Link>
-                  <Link
-                    href="#"
-                    onClick={() => setIsOpen(false)}
-                    className="text-2xl text-white px-8 py-3 rounded-full font-medium border border-zinc-800 hover:bg-zinc-900 transition-all"
-                  >
-                    Sign up
+                    Get Started
+                    <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-0.5" />
                   </Link>
                 </motion.div>
               </motion.div>

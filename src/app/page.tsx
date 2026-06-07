@@ -44,10 +44,13 @@ export default function Home() {
 
         {/* Logo Cloud Section */}
         <section id="clients" className="py-24 px-6 border-b border-zinc-900 overflow-hidden">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="mb-12 text-center font-medium text-xl text-zinc-400 tracking-tight md:text-3xl font-hanken">
-              Companies we <span className="font-semibold text-white">collaborate</span> with.
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="mb-4 font-medium text-xs text-zinc-500 uppercase tracking-widest font-roboto">
+              Partnerships
             </h2>
+            <h3 className="mb-12 text-2xl md:text-3xl font-bold text-white tracking-tight font-hanken max-w-2xl mx-auto">
+              Companies we <span className="font-semibold text-zinc-400">collaborate</span> with.
+            </h3>
             <LogoCloud />
           </div>
         </section>
