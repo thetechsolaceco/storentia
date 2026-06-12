@@ -272,7 +272,7 @@ export function Pricing() {
                     </ul>
 
                     <Link
-                      href="https://app.storentia.com/login"
+                      href="https://dashboard.storentia.com/login"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`w-full flex items-center justify-center gap-2 py-3 px-6 font-bold font-hanken tracking-tight text-sm transition-all duration-300 mt-auto cursor-pointer border ${

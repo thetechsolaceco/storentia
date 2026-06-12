@@ -136,7 +136,7 @@ export function Header() {
           {/* Actions - Right */}
           <div className="md:w-1/4 w-auto flex items-center justify-end gap-4 lg:gap-6 text-sm">
             <Link
-              href="https://app.storentia.com/login"
+              href="https://dashboard.storentia.com/login"
               className="group inline-flex items-center gap-2 bg-white text-black px-5 py-2 rounded-full font-semibold text-xs md:text-sm hover:bg-zinc-100 transition-all duration-200 hidden sm:flex whitespace-nowrap"
             >
               Get Started
@@ -218,7 +218,7 @@ export function Header() {
                   className="flex flex-col items-center gap-6 mt-8"
                 >
                   <Link
-                    href="https://app.storentia.com/login"
+                    href="https://dashboard.storentia.com/login"
                     onClick={() => setIsOpen(false)}
                     className="group inline-flex items-center gap-2 bg-white text-black px-8 py-3 rounded-full font-semibold text-lg hover:bg-zinc-100 transition-all duration-200"
                   >
