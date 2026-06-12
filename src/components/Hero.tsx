@@ -83,7 +83,7 @@ export function Hero() {
         {/* CTAs */}
         <motion.div variants={item} className="mt-10 flex flex-col sm:flex-row items-center gap-4">
           <a
-            href="https://app.storentia.com"
+            href="https://dashboard.storentia.com"
             className="group inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold font-roboto text-sm hover:bg-zinc-100 transition-all duration-200"
           >
             Get Started
