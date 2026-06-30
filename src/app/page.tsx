@@ -8,7 +8,7 @@ import { Hero } from "@/components/Hero";
 import { Pricing } from "@/components/Pricing";
 import { StorefrontGrid } from "@/components/StorefrontGrid";
 import IntegrationHero from "@/components/ui/integration-hero";
-import { LogoCloud } from "@/components/ui/logo-cloud-2";
+// import { LogoCloud } from "@/components/ui/logo-cloud-2";
 
 export default function Home() {
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
@@ -41,9 +41,8 @@ export default function Home() {
         <Hero />
 
         <StorefrontGrid onHover={setHoveredImage} />
-
         {/* Logo Cloud Section */}
-        <section id="clients" className="py-24 px-6 border-b border-zinc-900 overflow-hidden">
+        {/* <section id="clients" className="py-24 px-6 border-b border-zinc-900 overflow-hidden">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="mb-4 font-medium text-xs text-zinc-500 uppercase tracking-widest font-roboto">
               Partnerships
@@ -54,6 +53,7 @@ export default function Home() {
             <LogoCloud />
           </div>
         </section>
+         */}
 
         {/* Features Scroll Section */}
         <FeatureScroll />
